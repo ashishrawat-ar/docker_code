@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pv-pod
+
+spec:
+  containers:
+  - name: pv-con
+    image: nginx
+    volumeMounts:
+      - mountPath: /test-pod
+        name: test-vol
+  volumes:
+  - name: test-vol
+    persistentVolumeClaim:
+      claimName: mypvc       #should be same as PVC object name
+
+
+
+
+
+
+# console.disableYellowBox = true;

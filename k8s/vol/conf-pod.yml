@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: conf-pod
+spec:
+  containers:
+  - name: con-1
+    image: centos
+    command: ["/bin/bash", "-c", "while true; do echo Hello-Map; sleep 5; done"]
+    volumeMounts:
+      - mountPath: "/tmp/config"      #the config file will be mounted as read only by default here
+        name: testconfigmap
+  volumes:
+    - name: testconfigmap
+      configMap: 
+         name: my-map                 #should be match with the configmap name 
+         items:
+           - key: sample.conf         #conf file which we created for configuration
+             path:  sample.conf   

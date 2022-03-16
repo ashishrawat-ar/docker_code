@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: conf-env
+spec:
+  containers:
+  - name: con-1
+    image: centos
+    command: ["/bin/bash", "-c", "while true; do echo Hello-Map; sleep 5; done"]
+    env:
+      - name: myenv           #env name in whioch value of the key is stored
+        valueFrom:
+          configMapKeyRef:
+            name: my-map       #name of the config created
+            key: sample.conf
+
+
+
+
+
+
+            # console.disableYellowBox = true;
