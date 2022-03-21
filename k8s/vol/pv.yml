@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mypv
+spec:
+  capacity:
+    storage: 2Gi           #this is where we define how much storage this PV should have
+  accessModes:
+    - ReadWriteOnce        #it means the volume can be mounted as read write by a single node
+  persistentVolumeReclaimPolicy: Recycle       #we can re-use it once work is completed
+  storageClassName: slow    #tag to backend storage, if we have ssd then defined as fast, if we have regular disk then defined as slow
+  awsElasticBlockStore:     #here we can define backend  persistent disk which is on aws, 
+    volumeID:              #we need to put volume id here, both volume and ec2 insatnce should be on same region
+    fsType: ext4            #we get a raw disk, and need to format in any of filesystem type
+

@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hostpath
+spec:
+  containers:
+  - name: con
+    image: centos
+    command: ["/bin/bash", "-c", "sleep 15000"]
+    volumeMounts:
+      - mountPath: /tmp/hostpath        #mountpoint inside the pod
+        name: vol-test
+  volumes:
+    - name: vol-test
+      hostPath:
+        path: /tmp/data     #mounted here, dir created automatically when the pod is scheduled on the worker node
+                            #data inside this dir should be the same as mountpath dir.
+
