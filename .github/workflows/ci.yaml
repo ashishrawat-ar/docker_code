@@ -10,5 +10,3 @@ jobs:
     steps:
     - name: Check out code
       uses: actions/checkout@master
-    - name: Run yamllint
-      uses: karancode/yamllint-github-action@master
