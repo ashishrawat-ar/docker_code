@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: myjob
+  namespace: jobs
+spec:
+  template:
+    metadata:
+      name: myjob
+    spec:
+      containers:
+      - name: image
+        image: centos
+        command: ["echo", "hello"] 
+      restartPolicy: Never

@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: cronjob
+  namespace: jobs
+spec:
+  schedule: "*/1 * * * *"    # we want to run job in every single min)
+  jobTemplate:
+    spec:
+      template: 
+       spec:
+         containers:
+         - name: job-image
+           image: python 
+           command: ["python", "--help" ]
+         restartPolicy: Never
+
+
+#  * * * * *  denotes-  min  hour  day  month/week  year
